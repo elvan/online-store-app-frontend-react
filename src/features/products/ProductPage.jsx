@@ -61,7 +61,12 @@ const ProductPage = ({ match }) => {
           </Row>
           <Row>
             <Col xs={12} md={6}>
-              <Image src={product.image} alt={product.name} fluid />
+              <Image
+                src={product.image}
+                alt={product.name}
+                fluid
+                className='w-100'
+              />
             </Col>
             <Col xs={12} md={6}>
               <ListGroup variant='flush'>
