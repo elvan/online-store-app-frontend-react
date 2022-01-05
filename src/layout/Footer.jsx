@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
-export default function Footer() {
+const Footer = () => {
   return (
     <div className='footer mt-auto'>
       <Container>
@@ -13,4 +13,6 @@ export default function Footer() {
       </Container>
     </div>
   );
-}
+};
+
+export default Footer;

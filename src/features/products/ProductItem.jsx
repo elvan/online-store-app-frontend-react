@@ -1,30 +1,31 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
-import Rating from '../../app/shared/Rating';
+import { Link } from 'react-router-dom';
+import Rating from '../../shared/Rating';
 
-export default function Product({ product }) {
+const ProductItem = ({ product }) => {
   return (
     <Card className='my-3 rounded'>
-      <a href={`/products/${product._id}`}>
+      <Link to={`/products/${product._id}`}>
         <Card.Img
           src={product.image}
           alt={product.name}
           className='img-fluid'
           variant='top'
         />
-      </a>
+      </Link>
       <Card.Body>
         <Card.Title as='div'>
-          <a href='/products/123'>
+          <Link to={`/products/${product._id}`}>
             <h5>
               <strong>{product.brand}</strong>
             </h5>
-          </a>
-          <a href='/products/123'>
+          </Link>
+          <Link to={`/products/${product._id}`}>
             <h6>
               <strong>{product.name}</strong>
             </h6>
-          </a>
+          </Link>
         </Card.Title>
         <Card.Text as='div' className='mb-3'>
           <Rating
@@ -38,4 +39,6 @@ export default function Product({ product }) {
       </Card.Body>
     </Card>
   );
-}
+};
+
+export default ProductItem;
