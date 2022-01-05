@@ -27,7 +27,7 @@ const ProductPage = ({ match }) => {
   return (
     <>
       <Row>
-        <Col xs={12} md={6}>
+        <Col xs={12} md={6} className='mb-sm-3 mb-md-0'>
           <Image src={product?.image} alt={product?.name} fluid />
         </Col>
         <Col xs={12} md={6}>
@@ -80,7 +80,7 @@ const ProductPage = ({ match }) => {
           </ListGroup>
         </Col>
       </Row>
-      <Link to='/' className='btn btn-light my-3'>
+      <Link to='/' className='btn btn-light my-3 ms-sm-3 ms-md-0'>
         Back to All Products
       </Link>
     </>
