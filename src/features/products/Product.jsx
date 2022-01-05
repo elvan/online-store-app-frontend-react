@@ -1,13 +1,14 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
+import Rating from '../../app/shared/Rating';
 
-export default function Product() {
+export default function Product({ product }) {
   return (
     <Card className='my-3 rounded'>
-      <a href='/products/123'>
+      <a href={`/products/${product._id}`}>
         <Card.Img
-          src='https://via.placeholder.com/200x200'
-          alt='prduct image placeholder'
+          src={product.image}
+          alt={product.name}
           className='img-fluid'
           variant='top'
         />
@@ -15,14 +16,24 @@ export default function Product() {
       <Card.Body>
         <Card.Title as='div'>
           <a href='/products/123'>
-            <strong>Product Name</strong>
+            <h5>
+              <strong>{product.brand}</strong>
+            </h5>
+          </a>
+          <a href='/products/123'>
+            <h6>
+              <strong>{product.name}</strong>
+            </h6>
           </a>
         </Card.Title>
         <Card.Text as='div' className='mb-3'>
-          <div>4.5 from 9 reviews</div>
+          <Rating
+            value={product.rating}
+            numberOfReviews={product.numberOfReviews}
+          />
         </Card.Text>
         <Card.Text as='div'>
-          <strong>$9.99</strong>
+          <strong>{product.price}</strong>
         </Card.Text>
       </Card.Body>
     </Card>
