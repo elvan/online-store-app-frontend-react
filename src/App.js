@@ -8,7 +8,9 @@ export default function App() {
     <>
       <Header />
       <Container>
-        <h1>Online Store</h1>
+        <main className='py-3'>
+          <h1>Online Store</h1>
+        </main>
       </Container>
       <Footer />
     </>
