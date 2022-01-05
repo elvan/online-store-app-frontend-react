@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
-import './Header.css';
 
 export default function Header() {
   return (
@@ -15,8 +14,12 @@ export default function Header() {
               <Nav.Link href='/products'>Products</Nav.Link>
             </Nav>
             <Nav>
-              <Nav.Link href='/cart'>Cart</Nav.Link>
-              <Nav.Link href='/login'>Login</Nav.Link>
+              <Nav.Link href='/cart'>
+                <i className='fas fa-shopping-cart'></i> Cart
+              </Nav.Link>
+              <Nav.Link href='/login'>
+                <i className='fas fa-user'></i> Login
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
