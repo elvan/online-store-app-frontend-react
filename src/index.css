@@ -1,3 +1,7 @@
-.dropdown-menu.show {
+.dropdown-menu {
   margin-top: 0.5rem;
+}
+
+.card-title a {
+  text-decoration: none;
 }
