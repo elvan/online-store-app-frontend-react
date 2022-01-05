@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header>
       <Navbar collapseOnSelect expand='md' bg='primary' variant='dark'>
-        <Container>
+        <Container fluid='xl'>
           <LinkContainer to='/'>
             <Navbar.Brand>OnlineStore</Navbar.Brand>
           </LinkContainer>
@@ -16,8 +16,11 @@ const Header = () => {
               <LinkContainer to='/' exact>
                 <Nav.Link>Home</Nav.Link>
               </LinkContainer>
-              <LinkContainer to='/products' exact>
-                <Nav.Link>Products</Nav.Link>
+              <LinkContainer to='/categories' exact>
+                <Nav.Link>Categories</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to='/brands' exact>
+                <Nav.Link>Brands</Nav.Link>
               </LinkContainer>
             </Nav>
             <Nav>

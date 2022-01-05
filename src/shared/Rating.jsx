@@ -1,16 +1,15 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 
-const Rating = ({ value, numberOfReviews }) => {
+const Rating = ({ rating, numberOfReviews }) => {
   const renderStars = () => {
     let stars = [];
 
     for (let i = 0; i < 5; i++) {
       let classes = 'text-dark ';
 
-      if (value >= i + 1) {
+      if (rating >= i + 1) {
         classes += 'fas fa-star';
-      } else if (value >= i + 0.5) {
+      } else if (rating >= i + 0.5) {
         classes += 'fas fa-star-half-alt';
       } else {
         classes += 'far fa-star';
@@ -26,15 +25,10 @@ const Rating = ({ value, numberOfReviews }) => {
     <div className='rating'>
       <span>{renderStars()}</span>
       <span className='ms-1'>
-        {value} ({numberOfReviews})
+        {rating} ({numberOfReviews})
       </span>
     </div>
   );
-};
-
-Rating.propTypes = {
-  value: PropTypes.number.isRequired,
-  numberOfReviews: PropTypes.number.isRequired,
 };
 
 export default Rating;

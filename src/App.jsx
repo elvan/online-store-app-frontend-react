@@ -11,14 +11,12 @@ const App = () => {
   return (
     <BrowserRouter>
       <Header />
-      <main className='py-3'>
-        <Container>
-          <Route path='/' component={HomePage} exact />
-          <Route path='/products/:id' component={ProductPage} exact />
-          <Route path='/cart' component={CartPage} exact />
-          <Route path='/login' component={LoginPage} exact />
-        </Container>
-      </main>
+      <Container as='main' className='py-3' fluid='xl'>
+        <Route path='/' component={HomePage} exact />
+        <Route path='/products/:id' component={ProductPage} exact />
+        <Route path='/cart' component={CartPage} exact />
+        <Route path='/login' component={LoginPage} exact />
+      </Container>
       <Footer />
     </BrowserRouter>
   );
