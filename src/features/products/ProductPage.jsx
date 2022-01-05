@@ -11,14 +11,15 @@ import {
 import { LinkContainer } from 'react-router-bootstrap';
 import Rating from '../../shared/Rating';
 
+const BACKEND_API = process.env.REACT_APP_BACKEND_API;
+
 const ProductPage = ({ match }) => {
   /** @type {[any, React.Dispatch<any>]} */
   const [product, setProduct] = useState();
 
-  useEffect(() => {
-    const BACKEND_API = process.env.REACT_APP_BACKEND_API;
-    const url = `${BACKEND_API}/products/${match.params.id}`;
+  const url = `${BACKEND_API}/products/${match.params.id}`;
 
+  useEffect(() => {
     const fetchProduct = async () => {
       try {
         const { data } = await axios.get(url);
@@ -30,7 +31,7 @@ const ProductPage = ({ match }) => {
     };
 
     fetchProduct();
-  }, []);
+  }, [url]);
 
   let statusText = '';
 
