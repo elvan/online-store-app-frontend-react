@@ -3,12 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import ProductItem from '../products/ProductItem';
 
-const BACKEND_API = process.env.REACT_APP_BACKEND_API;
-
 const HomePage = () => {
+  /** @type {[any[], React.Dispatch<any>]} */
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
+    const BACKEND_API = process.env.REACT_APP_BACKEND_API;
+
     const fetchProducts = async () => {
       try {
         const { data } = await axios.get(`${BACKEND_API}/products`);
@@ -25,13 +26,24 @@ const HomePage = () => {
   return (
     <>
       <h1>Featured Products</h1>
-      <Row>
-        {products.map((/** @type {any} */ product) => (
-          <Col className='my-3' sm={12} md={6} lg={4} xl={4} xxl={3}>
-            <ProductItem key={product._id} product={product} />
-          </Col>
-        ))}
-      </Row>
+      {/* {products.length === 0 && <p>Loading...</p>} */}
+      {products.length > 0 && (
+        <Row>
+          {products.map((/** @type {any} */ product) => (
+            <Col
+              key={product._id}
+              className='my-3'
+              sm={12}
+              md={6}
+              lg={4}
+              xl={4}
+              xxl={3}
+            >
+              <ProductItem product={product} />
+            </Col>
+          ))}
+        </Row>
+      )}
     </>
   );
 };

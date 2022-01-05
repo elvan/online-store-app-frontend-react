@@ -15,7 +15,7 @@ const Rating = ({ rating, numberOfReviews }) => {
         classes += 'far fa-star';
       }
 
-      stars.push(<i className={classes}></i>);
+      stars.push(<i key={i} className={classes}></i>);
     }
 
     return stars;
