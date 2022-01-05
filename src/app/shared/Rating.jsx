@@ -3,7 +3,7 @@ import React from 'react';
 
 const Rating = ({ value, numberOfReviews }) => {
   const renderStars = () => {
-    let starts = [];
+    let stars = [];
 
     for (let i = 0; i < 5; i++) {
       let classes = 'text-dark ';
@@ -16,10 +16,10 @@ const Rating = ({ value, numberOfReviews }) => {
         classes += 'far fa-star';
       }
 
-      starts.push(<i className={classes}></i>);
+      stars.push(<i className={classes}></i>);
     }
 
-    return starts;
+    return stars;
   };
 
   return (
