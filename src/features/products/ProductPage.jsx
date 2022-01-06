@@ -10,6 +10,7 @@ import {
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import Rating from '../../shared/Rating';
+import ProductPageShimmer from './ProductPageShimmer';
 
 const BACKEND_API = process.env.REACT_APP_BACKEND_API;
 
@@ -31,7 +32,9 @@ const ProductPage = ({ match }) => {
       } catch (error) {
         console.log(error);
       } finally {
-        setIsLoading(false);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
       }
     };
 
@@ -48,7 +51,7 @@ const ProductPage = ({ match }) => {
 
   return (
     <>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <ProductPageShimmer />}
       {!isLoading && !product && <p>Error fetching the product!</p>}
       {!isLoading && product && (
         <>
