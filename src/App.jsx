@@ -11,7 +11,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Header />
-      <Container as='main' className='py-3' fluid='xl'>
+      <Container as='main' className='py-3' fluid='lg'>
         <Route path='/' component={HomePage} exact />
         <Route path='/products/:id' component={ProductPage} exact />
         <Route path='/cart' component={CartPage} exact />

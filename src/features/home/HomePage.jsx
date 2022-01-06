@@ -35,9 +35,9 @@ const HomePage = () => {
               className='my-3'
               sm={12}
               md={6}
-              lg={4}
+              lg={6}
               xl={4}
-              xxl={3}
+              xxl={4}
             >
               <ProductItem product={product} />
             </Col>

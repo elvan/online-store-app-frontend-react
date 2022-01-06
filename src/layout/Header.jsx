@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header>
       <Navbar collapseOnSelect expand='md' bg='primary' variant='dark'>
-        <Container fluid='xl'>
+        <Container fluid='lg'>
           <LinkContainer to='/'>
             <Navbar.Brand>OnlineStore</Navbar.Brand>
           </LinkContainer>

@@ -60,7 +60,7 @@ const ProductPage = ({ match }) => {
             </Breadcrumb>
           </Row>
           <Row>
-            <Col xs={12} md={6}>
+            <Col xs={12} md={6} className='mb-3'>
               <Image
                 src={product.image}
                 alt={product.name}
