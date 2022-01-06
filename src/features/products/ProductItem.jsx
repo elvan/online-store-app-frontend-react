@@ -34,7 +34,9 @@ const ProductItem = ({ product }) => {
           />
         </Card.Text>
         <Card.Text as='div'>
-          <strong>{product.price}</strong>
+          <strong>
+            Rp {new Intl.NumberFormat('id-ID').format(product.price)}
+          </strong>
         </Card.Text>
       </Card.Body>
     </Card>

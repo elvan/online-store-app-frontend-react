@@ -88,7 +88,9 @@ const ProductPage = ({ match }) => {
                   />
                 </ListGroup.Item>
                 <ListGroup.Item className='fs-5'>
-                  <strong>{product.price}</strong>
+                  <strong>
+                    Rp {new Intl.NumberFormat('id-ID').format(product.price)}
+                  </strong>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <h3>Product Information</h3>
