@@ -3,19 +3,21 @@ import React, { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import ProductItem from '../products/ProductItem';
 
+const BACKEND_API = process.env.REACT_APP_BACKEND_API;
+
 const HomePage = () => {
   /** @type {[any[], React.Dispatch<any>]} */
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    const BACKEND_API = process.env.REACT_APP_BACKEND_API;
+  const url = `${BACKEND_API}/products`;
 
+  useEffect(() => {
     const fetchProducts = async () => {
       try {
         setIsLoading(true);
 
-        const { data } = await axios.get(`${BACKEND_API}/products`);
+        const { data } = await axios.get(url);
 
         setProducts(data.products);
       } catch (error) {
@@ -26,7 +28,7 @@ const HomePage = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [url]);
 
   return (
     <>

@@ -16,17 +16,22 @@ const BACKEND_API = process.env.REACT_APP_BACKEND_API;
 const ProductPage = ({ match }) => {
   /** @type {[any, React.Dispatch<any>]} */
   const [product, setProduct] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   const url = `${BACKEND_API}/products/${match.params.id}`;
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
+        setIsLoading(true);
+
         const { data } = await axios.get(url);
 
         setProduct(data.product);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -43,8 +48,9 @@ const ProductPage = ({ match }) => {
 
   return (
     <>
-      {/* {!product && <p>Loading...</p>} */}
-      {product && (
+      {isLoading && <p>Loading...</p>}
+      {!isLoading && !product && <p>Error fetching the product!</p>}
+      {!isLoading && product && (
         <>
           <Row>
             <Breadcrumb>
