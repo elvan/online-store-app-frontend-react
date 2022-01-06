@@ -6,17 +6,22 @@ import ProductItem from '../products/ProductItem';
 const HomePage = () => {
   /** @type {[any[], React.Dispatch<any>]} */
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const BACKEND_API = process.env.REACT_APP_BACKEND_API;
 
     const fetchProducts = async () => {
       try {
+        setIsLoading(true);
+
         const { data } = await axios.get(`${BACKEND_API}/products`);
 
         setProducts(data.products);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -26,8 +31,9 @@ const HomePage = () => {
   return (
     <>
       <h1>Featured Products</h1>
-      {/* {products.length === 0 && <p>Loading...</p>} */}
-      {products.length > 0 && (
+      {isLoading && <p>Loading...</p>}
+      {!isLoading && products.length === 0 && <p>No products found!</p>}
+      {!isLoading && products.length > 0 && (
         <Row>
           {products.map((/** @type {any} */ product) => (
             <Col
