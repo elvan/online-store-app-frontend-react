@@ -5,7 +5,7 @@ import Rating from '../../shared/Rating';
 
 const ProductItem = ({ product }) => {
   return (
-    <Card className='my-3 rounded'>
+    <Card className='rounded'>
       <Link to={`/products/${product._id}`} className='stretched-link'>
         <Card.Img
           src={product.image}
