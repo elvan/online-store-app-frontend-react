@@ -11,7 +11,7 @@ export function fetchAllProducts() {
       dispatch({ type: PRODUCT_LIST_REQUEST });
 
       const apiUrl = process.env.REACT_APP_BACKEND_API;
-      const { data } = await axios.get(`${apiUrl}/api/products`);
+      const { data } = await axios.get(`${apiUrl}/products`);
 
       dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
     } catch (error) {

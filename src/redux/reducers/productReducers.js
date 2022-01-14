@@ -5,7 +5,7 @@ import {
 } from '../constants';
 
 const productListState = {
-  productList: [],
+  products: [],
 };
 
 export function productListReducer(state = productListState, action) {
@@ -19,7 +19,7 @@ export function productListReducer(state = productListState, action) {
       return {
         ...state,
         loading: false,
-        productList: action.payload,
+        products: action.payload.products,
       };
     case PRODUCT_LIST_FAILURE:
       return {

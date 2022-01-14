@@ -1,62 +1,49 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Col, Row } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAllProducts } from '../../redux/actions/productActions';
 import ProductItem from '../products/ProductItem';
 import ProductItemShimmer from '../products/ProductItemShimmer';
 
-const BACKEND_API = process.env.REACT_APP_BACKEND_API;
-
 const HomePage = () => {
-  /** @type {[any[], React.Dispatch<any>]} */
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const url = `${BACKEND_API}/products`;
+  // @ts-ignore
+  const { loading, products } = useSelector((state) => state.productList);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setIsLoading(true);
+    dispatch(fetchAllProducts());
+  }, [dispatch]);
 
-        const { data } = await axios.get(url);
+  if (loading) {
+    return (
+      <Row>
+        <Col className='my-3' sm={12} md={6} xl={4}>
+          <ProductItemShimmer />
+        </Col>
+        <Col className='my-3' sm={12} md={6} xl={4}>
+          <ProductItemShimmer />
+        </Col>
+        <Col className='my-3' sm={12} md={6} xl={4}>
+          <ProductItemShimmer />
+        </Col>
+      </Row>
+    );
+  }
 
-        setProducts(data.products);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, [url]);
+  if (products.length === 0) {
+    return <p>No products found!</p>;
+  }
 
   return (
     <>
       <h1>Featured Products</h1>
-      {isLoading && (
-        <Row>
-          <Col className='my-3' sm={12} md={6} xl={4}>
-            <ProductItemShimmer />
+      <Row>
+        {products.map((product) => (
+          <Col key={product._id} className='my-3' sm={12} md={6} xl={4}>
+            <ProductItem product={product} />
           </Col>
-          <Col className='my-3' sm={12} md={6} xl={4}>
-            <ProductItemShimmer />
-          </Col>
-          <Col className='my-3' sm={12} md={6} xl={4}>
-            <ProductItemShimmer />
-          </Col>
-        </Row>
-      )}
-      {!isLoading && products.length === 0 && <p>No products found!</p>}
-      {!isLoading && products.length > 0 && (
-        <Row>
-          {products.map((/** @type {any} */ product) => (
-            <Col key={product._id} className='my-3' sm={12} md={6} xl={4}>
-              <ProductItem product={product} />
-            </Col>
-          ))}
-        </Row>
-      )}
+        ))}
+      </Row>
     </>
   );
 };
