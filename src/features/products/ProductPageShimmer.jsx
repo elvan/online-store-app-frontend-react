@@ -10,10 +10,10 @@ const ProductPageShimmer = () => {
             <Placeholder style={{ width: '4rem' }} />
           </Breadcrumb.Item>
           <Breadcrumb.Item>
-            <Placeholder style={{ width: '6rem' }} />
+            <Placeholder style={{ width: '5rem' }} />
           </Breadcrumb.Item>
           <Breadcrumb.Item active>
-            <Placeholder style={{ width: '8rem' }} />
+            <Placeholder style={{ width: '5rem' }} />
           </Breadcrumb.Item>
         </Placeholder>
       </Row>
