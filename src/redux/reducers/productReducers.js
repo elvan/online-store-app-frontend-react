@@ -18,13 +18,14 @@ export function productListReducer(state = productListState, action) {
     case PRODUCT_LIST_SUCCESS:
       return {
         ...state,
+        ...action.payload,
         loading: false,
-        products: action.payload.products,
       };
     case PRODUCT_LIST_FAILURE:
       return {
         ...state,
         loading: false,
+        error: action.payload,
       };
     default:
       return state;

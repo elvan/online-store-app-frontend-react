@@ -2,12 +2,15 @@ import React, { useEffect } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllProducts } from '../../redux/actions/productActions';
+import Message from '../../shared/Message';
 import ProductItem from '../products/ProductItem';
 import ProductItemShimmer from '../products/ProductItemShimmer';
 
 const HomePage = () => {
-  // @ts-ignore
-  const { loading, products } = useSelector((state) => state.productList);
+  const { loading, error, products } = useSelector(
+    // @ts-ignore
+    (state) => state.productList
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,23 +18,21 @@ const HomePage = () => {
   }, [dispatch]);
 
   if (loading) {
-    return (
-      <Row>
-        <Col className='my-3' sm={12} md={6} xl={4}>
+    let shimmerArray = [];
+
+    for (let i = 0; i < 3; i++) {
+      shimmerArray.push(
+        <Col key={i} className='my-3' sm={12} md={6} xl={4}>
           <ProductItemShimmer />
         </Col>
-        <Col className='my-3' sm={12} md={6} xl={4}>
-          <ProductItemShimmer />
-        </Col>
-        <Col className='my-3' sm={12} md={6} xl={4}>
-          <ProductItemShimmer />
-        </Col>
-      </Row>
-    );
+      );
+    }
+
+    return <Row>{shimmerArray}</Row>;
   }
 
-  if (products.length === 0) {
-    return <p>No products found!</p>;
+  if (!products) {
+    return <Message variant='danger'>{error}</Message>;
   }
 
   return (
