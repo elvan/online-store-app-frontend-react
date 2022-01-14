@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Breadcrumb,
   Button,
@@ -14,7 +14,9 @@ import Message from '../../shared/Message';
 import Rating from '../../shared/Rating';
 import ProductPageShimmer from './ProductPageShimmer';
 
-const ProductPage = ({ match }) => {
+const ProductPage = ({ history, match }) => {
+  const [quantity, setQuantity] = useState(1);
+
   const { loading, error, product } = useSelector(
     // @ts-ignore
     (state) => state.productDetails
@@ -26,6 +28,10 @@ const ProductPage = ({ match }) => {
   useEffect(() => {
     dispatch(fetchOneProduct(id));
   }, [id]);
+
+  const handleAddToCart = () => {
+    history.push('/cart');
+  };
 
   let statusText = '';
 
@@ -98,6 +104,27 @@ const ProductPage = ({ match }) => {
                 <strong>{statusText}</strong>
               </p>
             </ListGroup.Item>
+            {product.countInStock > 0 && (
+              <ListGroup.Item>
+                <Row>
+                  <Col xs={6}>
+                    <strong>Quantity</strong>
+                  </Col>
+                  <Col xs={6}>
+                    <input
+                      type='number'
+                      min='1'
+                      max={product.countInStock}
+                      step='1'
+                      value={quantity}
+                      onChange={(event) =>
+                        setQuantity(Number(event.target.value))
+                      }
+                    />
+                  </Col>
+                </Row>
+              </ListGroup.Item>
+            )}
             <ListGroup.Item>
               <div className='d-grid'>
                 <Button
@@ -105,6 +132,7 @@ const ProductPage = ({ match }) => {
                   size='lg'
                   type='button'
                   disabled={product.countInStock === 0}
+                  onClick={handleAddToCart}
                 >
                   Add to Cart
                 </Button>
