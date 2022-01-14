@@ -6,7 +6,7 @@ import {
   PRODUCT_LIST_FAILURE,
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
-} from '../constants';
+} from '../constants/productConstants';
 
 export function fetchAllProducts() {
   return async (dispatch) => {
